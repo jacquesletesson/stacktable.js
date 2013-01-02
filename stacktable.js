@@ -14,6 +14,7 @@
   $.fn.stacktable = function(options) {
     var $tables = this,
         defaults = {id:'stacktable',hideOriginal:false},
+        defaults = {id:'stacktable',hideOriginal:false, sep:true, sepname:'separator'},
         settings = $.extend({}, defaults, options),
         stacktable;
 
@@ -32,6 +33,9 @@
         // for the other rows, put the left table cell as the head for that row
         // then iterate through the key/values
         else {
+        	if (settings.sep){
+        		markup += '<th class="'+settings.sepname+'" colspan="2"></th>'
+        	}
           $(this).find('td').each(function(index,value) {
             if (index===0) {
               markup += '<tr><th class="st-head-row" colspan="2">'+$(this).html()+'</th></tr>';
